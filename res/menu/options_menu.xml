@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-
+    <item
+            android:id="@+id/menu_editpwd"
+            android:icon="?action_icon_rename"
+            android:showAsAction="always"
+            android:title="@string/menu_editpwd"/>
+    <!--
     <item
         android:id="@+id/menu_goto"
         android:icon="?action_icon_navigate"
@@ -36,5 +41,5 @@
         android:id="@+id/menu_settings"
         android:icon="@android:drawable/ic_menu_preferences"
         android:title="@string/menu_preferences"/>
-
+    -->
 </menu>

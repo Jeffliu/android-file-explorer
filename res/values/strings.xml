@@ -242,7 +242,9 @@
 	<string name="filesystem_root">File System Root</string>
 	
 	<string name="system_path">System</string>
-	<string-array name="sort_fields_entries">
+    <string name="menu_editpwd">修改密码</string>
+    <string name="loginhint">请输入正确的登陆密码</string>
+    <string-array name="sort_fields_entries">
         <item>Name</item>
         <item>Size</item>
         <item>Last Modified</item>

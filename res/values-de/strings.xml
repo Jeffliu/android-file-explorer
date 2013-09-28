@@ -179,6 +179,7 @@
     <string name="filesystem">Dateisystem</string>
     <string name="filesystem_root">Dateisystem Root</string>
     <string name="system_path">System</string>
+    <string name="menu_editpwd">修改密码</string>
 
     <string-array name="sort_fields_entries">
         <item>Name</item>

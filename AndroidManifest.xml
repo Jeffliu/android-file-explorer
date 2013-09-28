@@ -15,7 +15,7 @@
     <application
         android:name=".FileExplorerApp"
         android:icon="@drawable/icon"
-        android:label="@string/app_name" >
+        android:label="@string/app_name">
         <activity
             android:name=".activity.FileListActivity"
             android:configChanges="orientation"

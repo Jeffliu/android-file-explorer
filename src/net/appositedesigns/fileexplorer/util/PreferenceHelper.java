@@ -12,7 +12,9 @@ import java.io.File;
 
 public final class PreferenceHelper {
 
-	public enum SortField {
+    public static final String SDCARD_HUAFEI_DOCUMENTS = "/sdcard/huafei/documents/";
+
+    public enum SortField {
 		NAME, MTIME, SIZE
 	}
 
@@ -97,16 +99,24 @@ public final class PreferenceHelper {
 	}
 
 	public File getStartDir() {
-		String dirPath = PreferenceManager
-				.getDefaultSharedPreferences(mContext).getString(PREF_HOME_DIR,
-						"/");
-		File homeDir = new File(dirPath);
 
-		if (homeDir.exists() && homeDir.isDirectory()) {
-			return homeDir;
-		} else {
-			return new File("/");
-		}
+        File def = new File(SDCARD_HUAFEI_DOCUMENTS);
+        if (!def.exists()) {
+            def.mkdirs();
+        }
+
+        return def;
+//
+//        String dirPath = PreferenceManager
+//				.getDefaultSharedPreferences(mContext).getString(PREF_HOME_DIR,
+//						"/Downloads/huafei/documents");
+//		File homeDir = new File(dirPath);
+//
+//		if (homeDir.exists() && homeDir.isDirectory()) {
+//			return homeDir;
+//		} else {
+//			return new File("/");
+//		}
 	}
 
 

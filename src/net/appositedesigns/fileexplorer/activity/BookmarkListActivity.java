@@ -150,13 +150,13 @@ public class BookmarkListActivity extends BaseFileListActivity {
 			onBackPressed();
 			return true;
 		}
-		else if(R.id.menu_settings == item.getItemId())
-		{
-			Intent prefsIntent = new Intent(this,
-					SettingsActivity.class);
-			startActivity(prefsIntent);
-			return true;
-		}
+//		else if(R.id.menu_settings == item.getItemId())
+//		{
+//			Intent prefsIntent = new Intent(this,
+//					SettingsActivity.class);
+//			startActivity(prefsIntent);
+//			return true;
+//		}
 		else if(R.id.menu_add_bookmark == item.getItemId())
 		{
 			promptBookmarkPath();

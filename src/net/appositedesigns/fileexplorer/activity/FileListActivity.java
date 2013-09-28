@@ -84,15 +84,34 @@ public class FileListActivity extends BaseFileListActivity {
 
 		initFileListView();
 		focusOnParent = getPreferenceHelper().focusOnParent();
-		if (getPreferenceHelper().isEulaAccepted()) {
-			listContents(currentDir);
-		} else {
-			EulaPopupBuilder.create(this).show();
-		}
+		//if (getPreferenceHelper().isEulaAccepted()) {
+		//	listContents(currentDir);
+		//} else {
+			//EulaPopupBuilder.create(this).show();
+		//}
 
 	}
 
-	private void initUi() {
+    /**
+     * Called after {@link #onCreate} &mdash; or after {@link #onRestart} when
+     * the activity had been stopped, but is now again being displayed to the
+     * user.  It will be followed by {@link #onResume}.
+     * <p/>
+     * <p><em>Derived classes must call through to the super class's
+     * implementation of this method.  If they do not, an exception will be
+     * thrown.</em></p>
+     *
+     * @see #onCreate
+     * @see #onStop
+     * @see #onResume
+     */
+    @Override
+    protected void onStart() {
+        super.onStart();
+        EulaPopupBuilder.create(this).show();
+    }
+
+    private void initUi() {
 		if(isPicker)
 		{
 			getWindow().setUiOptions(0);
@@ -135,6 +154,9 @@ public class FileListActivity extends BaseFileListActivity {
 
 				if(!explorerListView.isLongClickable())
 					return true;
+
+                return true;
+                /*
 				if(isPicker)
 				{
 					return false;
@@ -169,6 +191,7 @@ public class FileListActivity extends BaseFileListActivity {
 						});
 				view.setSelected(true);
 				return true;
+				*/
 			}
 
 		};
@@ -181,12 +204,12 @@ public class FileListActivity extends BaseFileListActivity {
 		
 		if (restartDirPath != null) 
 		{
-			File restartDir = new File(restartDirPath);
-			if (restartDir.exists() && restartDir.isDirectory()) {
-				currentDir = restartDir;
-				getIntent().removeExtra(FileExplorerApp.EXTRA_FOLDER);
-			}
-		}
+            File restartDir = new File(restartDirPath);
+            if (restartDir.exists() && restartDir.isDirectory()) {
+                currentDir = restartDir;
+                getIntent().removeExtra(FileExplorerApp.EXTRA_FOLDER);
+            }
+        }
 		else if (savedInstanceState!=null && savedInstanceState.getSerializable(CURRENT_DIR_DIR) != null) {
 			
 			currentDir = new File(savedInstanceState
@@ -208,10 +231,10 @@ public class FileListActivity extends BaseFileListActivity {
 	private void prepareActionBar() {
 		final ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
-		actionBar.setDisplayShowTitleEnabled(false);
+		actionBar.setDisplayShowTitleEnabled(true);
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 		
-		mSpinnerAdapter = new ArrayAdapter<CharSequence>(this, android.R.layout.simple_spinner_dropdown_item, gotoLocations);
+		mSpinnerAdapter = new ArrayAdapter<CharSequence>(this, android.R.layout.simple_spinner_dropdown_item, new String[0]);
 		actionBar.setListNavigationCallbacks(mSpinnerAdapter, getActionbarListener(actionBar));
 		
 	}
@@ -423,25 +446,25 @@ public class FileListActivity extends BaseFileListActivity {
 
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
-
-		if(!isPicker)
-		{
-			if(getPreferenceHelper().isMediaExclusionEnabled())
-			{
-				menu.findItem(R.id.menu_media_exclusion).setVisible(true);
-				menu.findItem(R.id.menu_media_exclusion).setChecked(excludeFromMedia);
-			}
-			else
-			{
-				menu.findItem(R.id.menu_media_exclusion).setVisible(false);
-			}
-			menu.findItem(R.id.menu_bookmark_toggle).setChecked(bookmarker.isBookmarked(currentDir.getAbsolutePath()));
-			if (Util.canPaste(currentDir)) {
-				menu.findItem(R.id.menu_paste).setVisible(true);
-			} else {
-				menu.findItem(R.id.menu_paste).setVisible(false);
-			}	
-		}
+//
+//		if(!isPicker)
+//		{
+//			if(getPreferenceHelper().isMediaExclusionEnabled())
+//			{
+//				menu.findItem(R.id.menu_media_exclusion).setVisible(true);
+//				menu.findItem(R.id.menu_media_exclusion).setChecked(excludeFromMedia);
+//			}
+//			else
+//			{
+//				menu.findItem(R.id.menu_media_exclusion).setVisible(false);
+//			}
+//			menu.findItem(R.id.menu_bookmark_toggle).setChecked(bookmarker.isBookmarked(currentDir.getAbsolutePath()));
+//			if (Util.canPaste(currentDir)) {
+//				menu.findItem(R.id.menu_paste).setVisible(true);
+//			} else {
+//				menu.findItem(R.id.menu_paste).setVisible(false);
+//			}
+//		}
 		return super.onPrepareOptionsMenu(menu);
 	}
 
@@ -459,46 +482,46 @@ public class FileListActivity extends BaseFileListActivity {
 			setResult(RESULT_CANCELED);
 			finish();
 			return true;
-			
-		case R.id.menu_bookmark_toggle:
-			boolean setBookmark = item.isChecked();
-			item.setChecked(!setBookmark);
-			if(!setBookmark)
-			{
-				bookmarker.addBookmark(currentDir.getAbsolutePath());
-			}
-			else
-			{
-				bookmarker.removeBookmark(currentDir.getAbsolutePath());
-			}
-			return true;
-			
-		case R.id.menu_media_exclusion:
-			item.setChecked(!excludeFromMedia);
-			setMediaExclusionForFolder();
-			return true;
-			
-		case R.id.menu_goto:
-			Util.gotoPath(currentDir.getAbsolutePath(), this);
-			return true;
-
-		case R.id.menu_paste:
-			confirmPaste();
-			return true;
-
-		case R.id.menu_refresh:
-			refresh();
-			return true;
-			
-		case R.id.menu_newfolder:
-			confirmCreateFolder();
-			return true;
-
-		case R.id.menu_settings:
-			Intent prefsIntent = new Intent(FileListActivity.this,
-					SettingsActivity.class);
-			startActivity(prefsIntent);
-			return true;
+//
+//		case R.id.menu_bookmark_toggle:
+//			boolean setBookmark = item.isChecked();
+//			item.setChecked(!setBookmark);
+//			if(!setBookmark)
+//			{
+//				bookmarker.addBookmark(currentDir.getAbsolutePath());
+//			}
+//			else
+//			{
+//				bookmarker.removeBookmark(currentDir.getAbsolutePath());
+//			}
+//			return true;
+//
+//		case R.id.menu_media_exclusion:
+//			item.setChecked(!excludeFromMedia);
+//			setMediaExclusionForFolder();
+//			return true;
+//
+//		case R.id.menu_goto:
+//			Util.gotoPath(currentDir.getAbsolutePath(), this);
+//			return true;
+//
+//		case R.id.menu_paste:
+//			confirmPaste();
+//			return true;
+//
+//		case R.id.menu_refresh:
+//			refresh();
+//			return true;
+//
+//		case R.id.menu_newfolder:
+//			confirmCreateFolder();
+//			return true;
+//
+//		case R.id.menu_settings:
+//			Intent prefsIntent = new Intent(FileListActivity.this,
+//					SettingsActivity.class);
+//			startActivity(prefsIntent);
+//			return true;
 		default:
 			super.onOptionsItemSelected(item);
 			break;

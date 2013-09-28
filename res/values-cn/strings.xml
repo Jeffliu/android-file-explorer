@@ -241,7 +241,8 @@
         <string name="filesystem_root">Root 档案系统</string>
         
         <string name="system_path">System</string>
-        <string-array name="sort_fields_entries">
+    <string name="menu_editpwd">修改密码</string>
+    <string-array name="sort_fields_entries">
         <item>名称</item>
         <item>大小</item>
         <item>修改日期</item>

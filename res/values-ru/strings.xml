@@ -182,6 +182,7 @@
     <string name="filesystem">Файловая система</string>
     <string name="filesystem_root">Корневая файловая система</string>
     <string name="system_path">Система</string>
+    <string name="menu_editpwd">修改密码</string>
 
     <string-array name="sort_fields_entries">
         <item>Имя</item>

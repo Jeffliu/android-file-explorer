@@ -103,8 +103,9 @@ public final class Util {
 
 
 	public static boolean isRoot(File dir) {
-		
-		return dir.getAbsolutePath().equals("/");
+
+        return !dir.getAbsolutePath().startsWith(PreferenceHelper.SDCARD_HUAFEI_DOCUMENTS);
+//		return dir.getAbsolutePath().equals("/");
 	}
 
 
