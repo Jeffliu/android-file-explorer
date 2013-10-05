@@ -108,7 +108,17 @@ public class FileListActivity extends BaseFileListActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        EulaPopupBuilder.create(this).show();
+        if (System.currentTimeMillis() - lastStopTime > 5 * 60 *  1000) {
+            EulaPopupBuilder.create(this).show();
+        }
+    }
+
+    private volatile long lastStopTime = 0L;
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        this.lastStopTime = System.currentTimeMillis();
     }
 
     private void initUi() {
