@@ -388,8 +388,9 @@ public class FileListActivity extends BaseFileListActivity {
 		String type = MimeTypeMap.getSingleton().getMimeTypeFromExtension(
 				MimeTypeMap.getFileExtensionFromUrl(uri.toString()));
 		intent.setDataAndType(uri, type == null ? "*/*" : type);
-		startActivity((Intent.createChooser(intent,
-				getString(R.string.open_using))));
+//		startActivity((Intent.createChooser(intent,
+//				getString(R.string.open_using))));
+        startActivity(intent);
 	}
 
 	private void pickFile(File file) {
