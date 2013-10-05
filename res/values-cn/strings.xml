@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     
-        <string name="app_name">档案总管</string>
+        <string name="app_name">配网移动作业平台</string>
         <string name="settings">偏好设定</string>
                 <string name="bookmarks">书签</string>
         

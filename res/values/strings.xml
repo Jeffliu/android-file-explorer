@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     
-	<string name="app_name">File Explorer</string>
+	<string name="app_name">配网移动作业平台</string>
 	<string name="settings">Preferences</string>
 		<string name="bookmarks">Bookmarks</string>
 	
@@ -238,8 +238,8 @@
 
 	
 	<string name="item_count_subtitle">Total of %1$s items</string>
-	<string name="filesystem">File System</string>
-	<string name="filesystem_root">File System Root</string>
+	<string name="filesystem">作业平台</string>
+	<string name="filesystem_root">作业平台</string>
 	
 	<string name="system_path">System</string>
     <string name="menu_editpwd">修改密码</string>
